@@ -2,8 +2,8 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
-const contactRoutes = require('./routes/contactRoutes'); // Import contact routes
-const userRoutes = require('./routes/userRoutes');
+
+const userStoriesRoute = require('./routes/userStoriesRoute');
 const app = express();
 const port = 3000;
 
@@ -15,12 +15,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Use contact routes
-app.use('/api/contacts', contactRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/', userStoriesRoute);
+
 
 // Define a route for the homepage
 app.get('/', (req, res) => {
-    res.send('Welcome to Dress Store1!');
+    res.send('Welcome to User Stories database!');
 });
 
 
@@ -28,18 +28,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
-
-
-// const express = require('express');
-// const app = express();
-// const port = 3000;
-
-// // Define a route for the homepage
-// app.get('/', (req, res) => {
-//     res.send('Welcome to Dress Store!');
-// });
-
-// // Start the server
-// app.listen(port, () => {
-//     console.log(`Server is running on http://localhost:${port}`);
-// });
